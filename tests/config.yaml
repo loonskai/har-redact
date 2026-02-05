@@ -1,0 +1,62 @@
+# HAR Redaction Configuration Example
+
+# Preserve the length of redacted values (e.g., [REDACTED:12])
+preserve_length: false
+
+# Hash values for correlation instead of complete redaction
+hash_values: false
+
+# Fail on suspicious patterns (strict mode)
+strict_mode: false
+
+# Built-in redaction options
+redact_emails: true
+redact_phone_numbers: true
+redact_ips: false
+redact_cookies: true
+redact_auth_headers: true
+redact_auth_params: true
+
+# Custom redaction patterns
+custom_patterns:
+  # Redact Social Security Numbers
+  - name: "SSN"
+    pattern: '\b\d{3}-\d{2}-\d{4}\b'
+    replacement: "[SSN-REDACTED]"
+    scope: "all"
+    case_insensitive: false
+
+  # Redact AWS access keys
+  - name: "AWS Access Key"
+    pattern: 'AKIA[0-9A-Z]{16}'
+    replacement: "[AWS-KEY-REDACTED]"
+    scope: "all"
+    case_insensitive: false
+
+  # Redact Stripe API keys
+  - name: "Stripe API Key"
+    pattern: 'sk_live_[0-9a-zA-Z]{24,}'
+    replacement: "[STRIPE-KEY-REDACTED]"
+    scope: "all"
+    case_insensitive: false
+
+  # Redact GitHub tokens
+  - name: "GitHub Token"
+    pattern: 'ghp_[0-9a-zA-Z]{36}'
+    replacement: "[GITHUB-TOKEN-REDACTED]"
+    scope: "all"
+    case_insensitive: false
+
+  # Redact generic secrets
+  - name: "Generic Secret"
+    pattern: 'secret[_-]?key'
+    replacement: "[SECRET-REDACTED]"
+    scope: "body"
+    case_insensitive: true
+
+  # Redact passwords in JSON
+  - name: "Password Field"
+    pattern: '"password"\s*:\s*"[^"]*"'
+    replacement: '"password":"[REDACTED]"'
+    scope: "body"
+    case_insensitive: false

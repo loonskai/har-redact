@@ -31,11 +31,24 @@ A high-performance Rust tool for sanitizing sensitive information from HTTP Arch
 
 ## Installation
 
+### Option A: Build from source
 ```bash
-# Build from source
+# 
 cargo build --release
 
 # The binary will be at target/release/har-redact
+```
+
+### Option B: Homebrew
+```bash
+# Add your tap
+brew tap loonskai/tap
+
+# Install the tool
+brew install har-redact
+
+# Now you can run it from anywhere
+har-redact --help
 ```
 
 ## Usage

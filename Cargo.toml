@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 authors = ["HAR Redaction Tool"]
 description = "A tool to sanitize/redact sensitive information from HAR files"
+repository = "https://github.com/loonskai/har-redact"
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
